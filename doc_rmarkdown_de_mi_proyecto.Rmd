@@ -11,3 +11,4 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Estoy siguiendo los pasos de [como_usar_github](http://destio.us.es/calvo/asignaturas/ge_esco/tutorialusargitgithubrstudio/UsarGitGithubconRStudio.html) para comprobar si entiendo de qué va esto.
 
+Quizás podría hacer algún [curso_udemy](https://www.udemy.com/course/mastering-r-best-practices-and-essential-tools/). Este se llama "Mastering R: Best Practices and Essentials Tools".
