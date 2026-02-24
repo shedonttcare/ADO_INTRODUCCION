@@ -1,0 +1,13 @@
+---
+title: "GITHUB_BIOCONDUCTOR"
+author: "LGR"
+date: "2026-02-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Estoy siguiendo los pasos de [como_usar_github](http://destio.us.es/calvo/asignaturas/ge_esco/tutorialusargitgithubrstudio/UsarGitGithubconRStudio.html) para comprobar si entiendo de qué va esto.
+
