@@ -19,3 +19,15 @@ Quizás podría hacer algún [curso_udemy](https://www.udemy.com/course/masterin
 
 Puedo bichear esta [página](https://eliocamp.github.io/r-clima/02-proyectos.html) para saber más
 
+--> en la creación del proyecto, podré marcar una pestaña para *crear un repositorio de git*
+
+--> hecho esto, ya me aparecerá en Esquina Superior Derecha (ESD) una pestaña "git"
+
+2. Conectar con GitHub: hay dos formas (ppalmente) 
+
+-> Creando primero en R
+-> Creando primero en GitHub
+
+3. Ir Confirmando (Commit) todos los cambios que haga
+
+3. Hacer push (de R a Github) y pull (de GitHub a R -> sobretodo cuando haya varios editores)
