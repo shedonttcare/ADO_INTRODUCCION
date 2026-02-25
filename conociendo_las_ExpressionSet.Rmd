@@ -159,6 +159,15 @@ experimentData = myDesc)
 
 **MANIPULANDO LOS ES: subsetting; extracción de sus elementos... (consultar pdf)** 
 
+Generalmente nos interesa acceder al siguiente tipo de tabla. Para ello, hacemos un "pdata"; podemos hacerlo del myES directamente
+
+```{r}
+pData(myES)
+
+
+```
+El subsetting se realiza **sobre el ES**; y lo realizará sobre cada slot. Respeta cada uno de los elementos. Evita el error.
+
 ## Exercises
 
 4. Create an ExpressionSet object to contain the data for the example study using the data you have downloaded and used in the first section. That is, adapt the steps taken to creat the ExpressionSet with the toy dataset to create one with the data from the study.
