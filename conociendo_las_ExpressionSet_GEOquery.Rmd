@@ -77,8 +77,8 @@ names(gse)
 
 # Extraemos el primer ES de la lista
 
-ESfromGEO <- gse[[1]]
-print(ESfromGEO)
+ESfromGSE <- gse[[1]]
+print(ESfromGSE)
 
 ```
 Ahora tenemos nuestro ES y podemos trabajar con él como lo hicimos anteriormente:
@@ -86,7 +86,7 @@ Ahora tenemos nuestro ES y podemos trabajar con él como lo hicimos anteriorment
 - función exprs() -> extrae la matriz de expresión ("la información feature - muestra")
 
 ```{r}
-head(exprs(ESfromGEO))
+head(exprs(ESfromGSE))
 ```
 
 *Observemos cómo cada columna corresponde a una muestra (Sample; código GSMxxx), y cada fila será una característica (en la que no estamos entrando ahora mimso)*
@@ -94,16 +94,41 @@ head(exprs(ESfromGEO))
 - función pData()
 
 ```{r}
-pData(ESfromGEO)
+pData(ESfromGSE)
 ```
 En este caso y en general para el objeto pData creado de esta manera, **tenemos mucha información repetida**
 
 El nombre de cada columna será cada covariable del estudio. Podemos explorarlas y decidir con cuál nos quedamos
 
 ```{r}
-colnames(pData(ESfromGEO))
+colnames(pData(ESfromGSE))
 ```
 ## Downloading a dataset in GSD format (df)
 
-**En general va a ser la manera preferida
+Aunque se prefiere en general trabajar con Series -> aunque el G_DS es más sencillo, las GSE suelen contener más información detallada sobre el diseño específico
+
+Recordar que aquí no obtenemos directamente el objeto de clase ES; pasamos por un tipo intermedio de clase "GDS". La función inicial de obtención no cambia. 
+
+```{r}
+gds <- getGEO("GDS4155")
+class(gds)
+
+# Observamos cómo, efectivamente, la clase es GDS
+
+slotNames(gds)
+
+```
+No nos detenemos en explicar los componentes de esta clase. 
+
+Función para obtener el ES:
+
+```{r}
+ESfromGDS <- GDS2eSet(gds, do.log2 = FALSE)
+ESfromGDS
+
+# Vemos los detalles del estudio :)
+
+
+```
+
 
