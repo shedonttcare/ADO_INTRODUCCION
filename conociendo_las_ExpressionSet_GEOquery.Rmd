@@ -13,21 +13,65 @@ knitr::opts_chunk$set(echo = TRUE)
 
 GEO == Gene Expression Omnibus
 
-NCBI GEO -> gran respositorio de datos (ómicos) experimentales
+NCBI GEO -> gran respositorio de datos de microarray
+GEOquery es un paquete de bioconductor cuya utilidad es la obtener datos de este repositorio
 
-GEOquery es un paquete de bioconductor cuya utilidad es, precisamente, obtener datos de este repositorio.
+**Instalación de GEOquery o carga si ya está instalado**
 
-```{r}
+```{r, eval=FALSE}
 if (!require(GEOquery)) {
   BiocManager::install("GEOquery")
 }
+
 ```
+(## Repaso de sintaxis básica:
+
+if (...) { }
+--> Estructura de control condicional: si la condición entre paréntesis es TRUE, se ejecuta { }; Si es FALSE, no ejecuta nada.
+
+Por tanto aquí: si NO se puede cargar el paquete GEOquery (!require("GEOquery")) (porque no esté instalado...); entonces instálalo usando BiocManager
+
+Si ya estuviera instalado, simplemente lo carga
+
+)
+
+
+```{r}
+library(GEOquery)
+```
+
+
+## Downloading a dataset in GSE format
+
+Formatos de GEO -> GEO utiliza **distintos identificadores** para caracterizar los diferentes estudios
+
+4 tipos de identificadores según el tipo de dato:
+
+[los aportan los usuarios]: 
+
+- SAMPLE [GSMxxx]: info sobre cada muestra individual 
+
+- PLATFORM [GPLxxx]: describe la tecnología o hardware utilizado para generar los datos  
+
+- SERIES [GSExxx]: actúa como punto focal del estudio (sería como el experimento completo); vincula un grupo de muestras relacionadas y proporciona una descripción completa del diseño experimental o objetivo
+
+- DATASET (los aporta GEO) [GDSxxx]: colección curada de muestras que son biológica y estadísticamente comparables; base para herramientas de análisis y visualización dentro de la web
+
+
+## Diferentes funciones de GEOquery
+
+- getGEO aplicada a un GSM (ID de series), devuelve habitualmente una lista de objetos de clase ES
+- getGEO aplicada a un GDS (Dataset) obtiene un objeto de **clase específica GDS**, que luego debe convertirse a ES
 
 ```{r}
 require(GEOquery)
+
+
 gse <- getGEO("GSE27174", GSEMatrix=TRUE, AnnotGPL=TRUE) # descarga la matriz y las anotaciones si están disponibles
 
 # los resultados se van a guardar en una lista
+
+
 ```
 
 
