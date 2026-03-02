@@ -1,0 +1,90 @@
+---
+title: "Actividad1.1"
+author: "LGR"
+date: "2026-03-02"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Actividad 1.1
+
+## ANÁLISIS DE DATOS ÓMICOS
+
+### Lucía García Ruiz
+
+#### PREGUNTA 1
+
+Título: Platelet transcriptome analysis in patients with germline RUNX1 mutations
+
+Referencia o enlace al artículo (DOI): 10.1016/j.jtha.2023.01.023
+
+Objetivo y ámbito de aplicación
+
+El objetivo del estudio es evaluar el efecto patogénico de tres variantes heterocigotas del gen RUNX1 (p.Gln268*, p.Thr196Ala y p.Asn159Ser) identificadas en tres pacientes no emparentados con trombocitopenia hereditaria. Para ello, se utiliza el análisis del transcriptoma de plaquetas como herramienta principal para discernir si dichas variantes son realmente patogénicas, complementando los estudios clínicos y de segregación familiar.
+
+Este trabajo se aplica en el campo de la hematología y la genética molecular, específicamente en el diagnóstico y caracterización de trastornos hereditarios de las plaquetas. Su aplicación es crucial para el manejo clínico de pacientes con sospecha de trastorno plaquetario familiar con predisposición a leucemia mieloide aguda (FPD/AML), ya que una clasificación precisa de las variantes del gen RUNX1 evita sobrediagnósticos y el consiguiente estrés psicológico y clínico innecesario para los pacientes y sus familias.
+
+Tecnologías ómicas que utilizan para generar los datos
+
+La tecnología empleada es la transcriptómica, concretamente:
+
+Microarrays de expresión (Clarion D human Array de Affymetrix) para analizar el perfil completo de expresión génica en plaquetas.
+
+qRT-PCR para validar la expresión de genes concretos identificados en los microarrays.
+
+Adecuidad de las ómicas al problema
+
+La transcriptómica es adecuada porque:
+
+RUNX1 es un factor de transcripción, por lo que sus mutaciones patogénicas alteran la expresión de múltiples genes "diana". El transcriptoma permite capturar globalmente este efecto en cascada.
+
+Las plaquetas reflejan la actividad génica de los megacariocitos, actuando como una "ventana" no invasiva para estudiar el impacto de las mutaciones en la megacariopoyesis.
+
+Permite identificar una "firma molecular" característica que diferencia variantes patogénicas de las no patogénicas, clasificándolas por su efecto biológico real y no solo por predicciones bioinformáticas.
+
+
+#### PREGUNTA 2
+
+```{r}
+library(GEOquery)
+```
+
+
+#### 1. Select a GEO (Gene Expression Omnibus) dataset from the list presented in the “GEO-datasets_enhanced.xls” document available in the resources of the activity.
+
+Estudio elegido: CD14 cells from granulocyte colony stimulating factor mobilized peripheral blood: expression profile ---> GDS781
+
+#### 2. Read the data from GEO using the GEOquery package. This will provide you with an expressionSet class object with the normalized data and an additional table with information about the study.
+
+```{r}
+gds_ex2 <- getGEO("GDS781") # obtención de los datos -> objeto GDS
+
+ESfromGDS_Ex2 <- GDS2eSet(gds_ex2)
+
+class(ESfromGDS_Ex2)
+
+```
+
+
+#### 3. Determine the structure of the data (rows, columns) and the design of the study (groups of samples or individuals, treatments if any, etc.) that generated them.
+
+```{r}
+AssayData_EX2 <- exprs(ESfromGDS_Ex2) #extraemos la matriz de expresión o assaydata
+head(AssayData_EX2)
+
+
+
+pDATA_ES_EX2<-pData(ESfromGDS_Ex2)
+colnames(pDATA_ES_EX2)
+
+pDATA_ES_EX2
+
+```
+
+Observamos 6 features (filas) y 10 columnas (muestras)
+Del pData sabemos: 5 muestras corresponden a pacientes NO tratados con factor estimulador de colonias; y 5 SÍ tratados. Se estudia el perfil de expresión de monocitos y células CD14+ (¿monocitos?) "normales" vs. monocitos resultado de esa estimulación.

@@ -18,12 +18,6 @@ GEOquery es un paquete de bioconductor cuya utilidad es la obtener datos de este
 
 **Instalación de GEOquery o carga si ya está instalado**
 
-```{r, eval=FALSE}
-if (!require(GEOquery)) {
-  BiocManager::install("GEOquery")
-}
-
-```
 (## Repaso de sintaxis básica:
 
 if (...) { }
@@ -132,40 +126,4 @@ ESfromGDS
 ```
 ## Exercises
 
-#### 1. Select a GEO (Gene Expression Omnibus) dataset from the list presented in the “GEO-datasets_enhanced.xls” document available in the resources of the activity.
-
-Estudio elegido: CD14 cells from granulocyte colony stimulating factor mobilized peripheral blood: expression profile ---> GDS781
-
-#### 2. Read the data from GEO using the GEOquery package. This will provide you with an expressionSet class object with the normalized data and an additional table with information about the study.
-
-```{r}
-gds_ex2 <- getGEO("GDS781") # obtención de los datos -> objeto GDS
-
-ESfromGDS_Ex2 <- GDS2eSet(gds_ex2)
-
-class(ESfromGDS_Ex2)
-
-```
-
-
-#### 3. Determine the structure of the data (rows, columns) and the design of the study (groups of samples or individuals, treatments if any, etc.) that generated them.
-
-```{r}
-AssayData_EX2 <- exprs(ESfromGDS_Ex2) #extraemos la matriz de expresión o assaydata
-head(AssayData_EX2)
-
-
-
-pDATA_ES_EX2<-pData(ESfromGDS_Ex2)
-colnames(pDATA_ES_EX2)
-
-pDATA_ES_EX2
-
-```
-Observamos 6 features (filas) y 10 columnas (muestras)
-Del pData sabemos: 5 muestras corresponden a pacientes NO tratados con factor estimulador de colonias; y 5 SÍ tratados. Se estudia el perfil de expresión de monocitos y células CD14+ (¿monocitos?) "normales" vs. monocitos resultado de esa estimulación.
-
-• The information of the experiment can also be downloaded from GEO, either with
-GEOquery if you provide the dataset identifier GDSxxxx or by accessing the study
-page.
-
+--> en Actividad 1.1
