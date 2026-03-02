@@ -129,7 +129,7 @@ myES <- ExpressionSet(
   assayData = expressionValues,
   phenoData = myAnnotDF,
   featureNames = myGenes)
-) #continuamos añadiendo información
+ #continuamos añadiendo información
 
 show(myES)
 
