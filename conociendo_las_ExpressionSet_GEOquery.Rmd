@@ -1,0 +1,33 @@
+---
+title: "Bioconductor_intro_GEOquery"
+author: "LGR"
+date: "2026-02-26"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## The GEOquery package to download data from GEO
+
+GEO == Gene Expression Omnibus
+
+NCBI GEO -> gran respositorio de datos (ómicos) experimentales
+
+GEOquery es un paquete de bioconductor cuya utilidad es, precisamente, obtener datos de este repositorio.
+
+```{r}
+if (!require(GEOquery)) {
+  BiocManager::install("GEOquery")
+}
+```
+
+```{r}
+require(GEOquery)
+gse <- getGEO("GSE27174", GSEMatrix=TRUE, AnnotGPL=TRUE) # descarga la matriz y las anotaciones si están disponibles
+
+# los resultados se van a guardar en una lista
+```
+
+
