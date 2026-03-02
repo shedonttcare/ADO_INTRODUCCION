@@ -36,12 +36,9 @@ Si ya estuviera instalado, simplemente lo carga
 )
 
 
-```{r}
-library(GEOquery)
-```
 
 
-## Downloading a dataset in GSE format
+## Downloading a dataset in GSE format (Serie)
 
 Formatos de GEO -> GEO utiliza **distintos identificadores** para caracterizar los diferentes estudios
 
@@ -64,14 +61,49 @@ Formatos de GEO -> GEO utiliza **distintos identificadores** para caracterizar l
 - getGEO aplicada a un GDS (Dataset) obtiene un objeto de **clase específica GDS**, que luego debe convertirse a ES
 
 ```{r}
-require(GEOquery)
+require(GEOquery) # similar a library
 
+gse <- getGEO("GSE27174", GSEMatrix=TRUE, AnnotGPL=TRUE) 
 
-gse <- getGEO("GSE27174", GSEMatrix=TRUE, AnnotGPL=TRUE) # descarga la matriz y las anotaciones si están disponibles
+# uso de getGEO sobre datos tipo Series -> debe devolver un objeto tipo lista en un ES
+
+# descarga, además, la matriz y las anotaciones si están disponibles
 
 # los resultados se van a guardar en una lista
 
+class(gse)
+names(gse)
+
+
+# Extraemos el primer ES de la lista
+
+ESfromGEO <- gse[[1]]
+print(ESfromGEO)
 
 ```
+Ahora tenemos nuestro ES y podemos trabajar con él como lo hicimos anteriormente:
 
+- función exprs() -> extrae la matriz de expresión ("la información feature - muestra")
+
+```{r}
+head(exprs(ESfromGEO))
+```
+
+*Observemos cómo cada columna corresponde a una muestra (Sample; código GSMxxx), y cada fila será una característica (en la que no estamos entrando ahora mimso)*
+
+- función pData()
+
+```{r}
+pData(ESfromGEO)
+```
+En este caso y en general para el objeto pData creado de esta manera, **tenemos mucha información repetida**
+
+El nombre de cada columna será cada covariable del estudio. Podemos explorarlas y decidir con cuál nos quedamos
+
+```{r}
+colnames(pData(ESfromGEO))
+```
+## Downloading a dataset in GSD format (df)
+
+**En general va a ser la manera preferida
 

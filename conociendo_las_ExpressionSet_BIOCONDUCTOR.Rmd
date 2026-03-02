@@ -172,6 +172,9 @@ El subsetting se realiza **sobre el ES**; y lo realizará sobre cada slot. Respe
 
 4. Create an ExpressionSet object to contain the data for the example study using the data you have downloaded and used in the first section. That is, adapt the steps taken to creat the ExpressionSet with the toy dataset to create one with the data from the study.
 
+
+
+
 5. Do some subsetting and check the consistency of the results obtained. For example remove some sample from the covariates slot (the phenoData) and see if it is automatically removed from the expression matrix‘.
 
 6. Check that you are able to reproduce the analysis in the first part accessing the components of the object created
